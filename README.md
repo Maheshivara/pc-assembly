@@ -6,7 +6,7 @@ Back End da aplicação _Pc Assembly_ criada para as disciplinas de Programaçã
 
 ### Desenvolvedores
 
-- [Humberto Augusto]()
+- [Humberto Augusto](https://github.com/Humberto0003)
 - [José Bezerra](https://github.com/JBPinheiro86)
 - [Luis Gabriel](https://github.com/Maheshivara)
 - [Wallace Souza](https://github.com/RochaSWallace)
