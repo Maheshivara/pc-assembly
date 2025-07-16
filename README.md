@@ -1,98 +1,92 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
-</p>
+# PC Assembly
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+## Introdução
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg" alt="Donate us"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow" alt="Follow us on Twitter"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+Back End da aplicação _Pc Assembly_ criada para as disciplinas de Programação Web e Projeto Integrador do 5º período de Sistemas de Informação no Instituto Federal de Alagoas (IFAL) campus Arapiraca durante o semestre 2025.1.
 
-## Description
+### Desenvolvedores
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+- [Humberto Augusto]()
+- [José Bezerra](https://github.com/JBPinheiro86)
+- [Luis Gabriel](https://github.com/Maheshivara)
+- [Wallace Souza](https://github.com/RochaSWallace)
 
-## Project setup
+## Ferramentas Utilizadas
 
-```bash
-$ yarn install
-```
+<table>
+  <thead>
+    <tr>
+      <th>NestJS</th>
+      <th>Prisma</th>
+      <th>Docker</th>
+      <th>PostgreSQL</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td align="center">
+        <a href="https://nestjs.com/" target="_blank">
+          <img src="https://nestjs.com/img/logo-small.svg" alt="NestJS" width="40"/><br/>
+        </a>
+      </td>
+      <td align="center">
+        <a href="https://www.prisma.io/" target="_blank">
+          <img src="https://www.prisma.io/docs/ai_button.svg" alt="Prisma" width="40"/><br/>
+        </a>
+      </td>
+      <td align="center">
+        <a href="https://www.docker.com/" target="_blank">
+          <img src="https://www.docker.com/wp-content/uploads/2022/03/Moby-logo.png" alt="Docker" width="40"/><br/>
+        </a>
+      </td>
+      <td align="center">
+        <a href="https://www.postgresql.org/" target="_blank">
+          <img src="https://www.postgresql.org/media/img/about/press/elephant.png" alt="PostgreSQL" width="40"/><br/>
+        </a>
+      </td>
+    </tr>
+  </tbody>
+</table>
 
-## Compile and run the project
+## Como Rodar
 
-```bash
-# development
-$ yarn run start
+> [!IMPORTANT]
+> Para rodar esse projeto é necessário possuir o NodeJS em versão igual ou superior à 22, você pode encontrar mais informações sobre o Node em: [https://nodejs.org/](https://nodejs.org/).
 
-# watch mode
-$ yarn run start:dev
+> [!IMPORTANT]
+> Embora seja possível rodar o projeto sem possuir Docker, esse tutorial assumirá que você possui o Docker e Docker Compose Plugin em sua máquina, você pode encontra-los em: [https://www.docker.com/](https://www.docker.com/).
 
-# production mode
-$ yarn run start:prod
-```
+> [!TIP]
+> Embora não seja necessário para rodar o projeto, é recomendado que se use o Git para clonar esse repositório, mais informações podem ser encontradas em: [https://git-scm.com](https://git-scm.com).
 
-## Run tests
+1. Clone esse repositório (ou realize download do código e extraía) no local desejado
+2. Na pasta principal do código (onde se encontra o arquivo [package.json](./package.json)) realize download das dependências com:
+   ```bash
+   yarn install
+   ```
+3. Copie o arquivo [.env.example](./.env.example) para um arquivo nomeado **.env**
+   1. Altere as variáveis de ambiente no arquivo .env conforme as suas necessidades, priorizando as **JWT_SECRET** e **REFRESH_TOKEN_SECRET** já que se tratam dos segredos utilizados para assinar as informações do JWT (JSON Web Token)
+4. Suba o container do banco de dados com:
 
-```bash
-# unit tests
-$ yarn run test
+   ```bash
+   docker compose up -d
+   ```
 
-# e2e tests
-$ yarn run test:e2e
+   - O **-d** é opcional, apenas para não ocupar o terminal com o container em execução
 
-# test coverage
-$ yarn run test:cov
-```
-
-## Deployment
-
-When you're ready to deploy your NestJS application to production, there are some key steps you can take to ensure it runs as efficiently as possible. Check out the [deployment documentation](https://docs.nestjs.com/deployment) for more information.
-
-If you are looking for a cloud-based platform to deploy your NestJS application, check out [Mau](https://mau.nestjs.com), our official platform for deploying NestJS applications on AWS. Mau makes deployment straightforward and fast, requiring just a few simple steps:
-
-```bash
-$ yarn install -g @nestjs/mau
-$ mau deploy
-```
-
-With Mau, you can deploy your application in just a few clicks, allowing you to focus on building features rather than managing infrastructure.
-
-## Resources
-
-Check out a few resources that may come in handy when working with NestJS:
-
-- Visit the [NestJS Documentation](https://docs.nestjs.com) to learn more about the framework.
-- For questions and support, please visit our [Discord channel](https://discord.gg/G7Qnnhy).
-- To dive deeper and get more hands-on experience, check out our official video [courses](https://courses.nestjs.com/).
-- Deploy your application to AWS with the help of [NestJS Mau](https://mau.nestjs.com) in just a few clicks.
-- Visualize your application graph and interact with the NestJS application in real-time using [NestJS Devtools](https://devtools.nestjs.com).
-- Need help with your project (part-time to full-time)? Check out our official [enterprise support](https://enterprise.nestjs.com).
-- To stay in the loop and get updates, follow us on [X](https://x.com/nestframework) and [LinkedIn](https://linkedin.com/company/nestjs).
-- Looking for a job, or have a job to offer? Check out our official [Jobs board](https://jobs.nestjs.com).
-
-## Support
-
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
-
-## Stay in touch
-
-- Author - [Kamil Myśliwiec](https://twitter.com/kammysliwiec)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
-
-## License
-
-Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
+5. Execute as migrações do prisma para o banco de dados com o comando:
+   ```bash
+   yarn prisma migrate deploy
+   ```
+6. Inicie a aplicação:
+   - Em modo de desenvolvimento:
+   ```bash
+   yarn start:dev
+   ```
+   Ou
+   - Em modo de produção:
+   ```bash
+   yarn build && yarn start:prod
+   ```
+7. Acesse os End-Points no endereço [http://localhost:3000](http://localhost:3000).
+   1. Caso tenha alterado a variável de ambiente **APP_PORT** a porta será o valor para o qual foi alterado.
