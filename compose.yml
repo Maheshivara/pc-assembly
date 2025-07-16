@@ -1,0 +1,13 @@
+services:
+  db:
+    image: postgres:17-alpine
+    container_name: pc_assembly_db
+    env_file:
+      - .env
+    ports:
+      - "${POSTGRES_PORT:-5432}:5432"
+    volumes:
+      - pc_assembly_data:/var/lib/postgresql/data
+
+volumes:
+  pc_assembly_data:

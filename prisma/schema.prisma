@@ -1,0 +1,78 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id           String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  email        String   @unique
+  username     String
+  passwordHash String   @map("password_hash")
+  createdAt    DateTime @default(now()) @map("created_at")
+  updatedAt    DateTime @updatedAt @map("updated_at")
+
+  configs UserConfig[]
+
+  @@map("user")
+}
+
+model UserConfig {
+  id            String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  name          String
+  userId        String   @unique @map("user_id_fk") @db.Uuid
+  user          User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  motherboardId String   @map("motherboard_id") @db.Uuid
+  cpuId         String   @map("cpu_id") @db.Uuid
+  gpuId         String   @map("gpu_id") @db.Uuid
+  cpuFanId      String   @map("cpu_fan_id") @db.Uuid
+  psuId         String   @map("psu_id") @db.Uuid
+  createdAt     DateTime @default(now()) @map("created_at")
+  updatedAt     DateTime @updatedAt @map("updated_at")
+
+  memories ConfigMemory[]
+  storages ConfigStorage[]
+  history  ConfigHistory[]
+
+  @@map("user_config")
+}
+
+model ConfigMemory {
+  id           String     @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  userConfigId String     @map("user_config_id_fk") @db.Uuid
+  userConfig   UserConfig @relation(fields: [userConfigId], references: [id], onDelete: Cascade)
+  memoryId     String     @map("memory_id")
+  quantity     Int
+
+  @@map("config_memory")
+}
+
+model ConfigStorage {
+  id           String     @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  userConfigId String     @map("user_config_id_fk") @db.Uuid
+  userConfig   UserConfig @relation(fields: [userConfigId], references: [id], onDelete: Cascade)
+  storageId    String     @map("storage_id")
+  quantity     Int
+
+  @@map("config_storage")
+}
+
+model ConfigHistory {
+  id           String     @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  userConfigId String     @map("user_config_id_fk") @db.Uuid
+  userConfig   UserConfig @relation(fields: [userConfigId], references: [id], onDelete: Cascade)
+  action       String     @map("action")
+  date         DateTime   @default(now()) @map("date")
+
+  @@map("config_history")
+}
