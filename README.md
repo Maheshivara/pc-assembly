@@ -78,7 +78,11 @@ Back End da aplicação _Pc Assembly_ criada para as disciplinas de Programaçã
    ```bash
    yarn prisma migrate deploy
    ```
-6. Inicie a aplicação:
+6. Gere o Prisma Client com:
+   ```bash
+   yarn prisma generate
+   ```
+7. Inicie a aplicação:
    - Em modo de desenvolvimento:
    ```bash
    yarn start:dev
@@ -88,5 +92,5 @@ Back End da aplicação _Pc Assembly_ criada para as disciplinas de Programaçã
    ```bash
    yarn build && yarn start:prod
    ```
-7. Acesse os End-Points no endereço [http://localhost:3000](http://localhost:3000).
+8. Acesse os End-Points no endereço [http://localhost:3000](http://localhost:3000).
    1. Caso tenha alterado a variável de ambiente **APP_PORT** a porta será o valor para o qual foi alterado.
