@@ -54,21 +54,21 @@ export class ConfigurationService {
         select: {
           id: true,
           name: true,
-          cpuId: true,
-          gpuId: true,
-          psuId: true,
-          motherboardId: true,
+          cpuMpn: true,
+          gpuMpn: true,
+          psuMpn: true,
+          motherboardMpn: true,
           memories: {
             select: {
               id: true,
-              memoryId: true,
+              memoryMpn: true,
               quantity: true,
             },
           },
           storages: {
             select: {
               id: true,
-              storageId: true,
+              storageMpn: true,
               quantity: true,
             },
           },
@@ -120,20 +120,20 @@ export class ConfigurationService {
         data: {
           userId,
           name: createConfigDto.name,
-          motherboardId: createConfigDto.motherboardId,
-          cpuId: createConfigDto.cpuId,
-          gpuId: createConfigDto.gpuId,
-          psuId: createConfigDto.psuId,
-          cpuFanId: createConfigDto.cpuFanId,
+          motherboardMpn: createConfigDto.motherboardMpn,
+          cpuMpn: createConfigDto.cpuMpn,
+          gpuMpn: createConfigDto.gpuMpn,
+          psuMpn: createConfigDto.psuMpn,
+          cpuFanMpn: createConfigDto.cpuFanMpn,
           memories: {
             create: createConfigDto.memories.map((memory) => ({
-              memoryId: memory.memoryId,
+              memoryMpn: memory.memoryMpn,
               quantity: memory.quantity,
             })),
           },
           storages: {
             create: createConfigDto.storages.map((storage) => ({
-              storageId: storage.storageId,
+              storageMpn: storage.storageMpn,
               quantity: storage.quantity,
             })),
           },
@@ -170,17 +170,17 @@ export class ConfigurationService {
         data: {
           userId,
           name: updateConfigDto.name,
-          motherboardId: updateConfigDto.motherboardId,
-          cpuId: updateConfigDto.cpuId,
-          gpuId: updateConfigDto.gpuId,
-          psuId: updateConfigDto.psuId,
-          cpuFanId: updateConfigDto.cpuFanId,
+          motherboardMpn: updateConfigDto.motherboardMpn,
+          cpuMpn: updateConfigDto.cpuMpn,
+          gpuMpn: updateConfigDto.gpuMpn,
+          psuMpn: updateConfigDto.psuMpn,
+          cpuFanMpn: updateConfigDto.cpuFanMpn,
           memories:
             updateConfigDto.memories && updateConfigDto.memories.length > 0
               ? {
                   deleteMany: {},
                   create: updateConfigDto.memories.map((memory) => ({
-                    memoryId: memory.memoryId,
+                    memoryMpn: memory.memoryMpn,
                     quantity: memory.quantity,
                   })),
                 }
@@ -190,7 +190,7 @@ export class ConfigurationService {
               ? {
                   deleteMany: {},
                   create: updateConfigDto.storages.map((storage) => ({
-                    storageId: storage.storageId,
+                    storageMpn: storage.storageMpn,
                     quantity: storage.quantity,
                   })),
                 }

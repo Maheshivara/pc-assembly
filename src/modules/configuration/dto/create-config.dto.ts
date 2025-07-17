@@ -12,20 +12,20 @@ export class CreateConfigDto {
   @MaxLength(50, { message: 'Name must not exceed 50 characters' })
   name: string;
 
-  @IsUUID('4', { message: 'Invalid motherboard ID' })
-  motherboardId: string;
+  @IsString({ message: 'Motherboard MPN must be a string' })
+  motherboardMpn: string;
 
-  @IsUUID('4', { message: 'Invalid CPU ID' })
-  cpuId: string;
+  @IsString({ message: 'CPU MPN must be a string' })
+  cpuMpn: string;
 
-  @IsUUID('4', { message: 'Invalid CPU Fan ID' })
-  cpuFanId: string;
+  @IsString({ message: 'CPU Fan MPN must be a string' })
+  cpuFanMpn: string;
 
-  @IsUUID('4', { message: 'Invalid GPU ID' })
-  gpuId: string;
+  @IsString({ message: 'GPU MPN must be a string' })
+  gpuMpn: string;
 
-  @IsUUID('4', { message: 'Invalid PSU ID' })
-  psuId: string;
+  @IsString({ message: 'PSU MPN must be a string' })
+  psuMpn: string;
 
   @MinLength(1, { message: 'At least one memory is required' })
   memories: CreateConfigMemoryDto[];
@@ -35,16 +35,16 @@ export class CreateConfigDto {
 }
 
 class CreateConfigMemoryDto {
-  @IsUUID('4', { message: 'Invalid memory ID' })
-  memoryId: string;
+  @IsString({ message: 'Memory MPN must be a string' })
+  memoryMpn: string;
 
   @IsPositive({ message: 'Quantity must be a positive number' })
   quantity: number;
 }
 
 class CreateConfigStorageDto {
-  @IsUUID('4', { message: 'Invalid storage ID' })
-  storageId: string;
+  @IsString({ message: 'Storage MPN must be a string' })
+  storageMpn: string;
 
   @IsPositive({ message: 'Quantity must be a positive number' })
   quantity: number;

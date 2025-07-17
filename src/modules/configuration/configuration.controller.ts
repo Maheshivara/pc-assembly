@@ -20,6 +20,7 @@ import { PaginationOptions } from '../common/entities/pagination.entity';
 import { isUUID } from 'class-validator';
 import { CreateConfigDto } from './dto/create-config.dto';
 import { UpdateConfigDto } from './dto/update-config.dto';
+import { RequestWithUser } from '../common/entities/request.entity';
 
 @Controller('configuration')
 export class ConfigurationController {
@@ -29,7 +30,7 @@ export class ConfigurationController {
   @Get('')
   @UseGuards(AuthGuard)
   async getConfig(
-    @Req() req: any,
+    @Req() req: RequestWithUser,
     @Query() paginationInfo: PaginationOptionsDto,
   ) {
     const pagination = new PaginationOptions(
@@ -42,7 +43,10 @@ export class ConfigurationController {
   @HttpCode(HttpStatus.OK)
   @Get(':id')
   @UseGuards(AuthGuard)
-  async getConfigById(@Req() req: any, @Param('id') configId: string) {
+  async getConfigById(
+    @Req() req: RequestWithUser,
+    @Param('id') configId: string,
+  ) {
     if (isUUID(configId) === false) {
       throw new NotFoundException('Invalid configuration ID');
     }
@@ -52,7 +56,10 @@ export class ConfigurationController {
   @HttpCode(HttpStatus.NO_CONTENT)
   @Delete(':id')
   @UseGuards(AuthGuard)
-  async deleteConfigById(@Req() req: any, @Param('id') configId: string) {
+  async deleteConfigById(
+    @Req() req: RequestWithUser,
+    @Param('id') configId: string,
+  ) {
     if (isUUID(configId) === false) {
       throw new NotFoundException('Invalid configuration ID');
     }
@@ -63,7 +70,7 @@ export class ConfigurationController {
   @Post('')
   @UseGuards(AuthGuard)
   async createConfig(
-    @Req() req: any,
+    @Req() req: RequestWithUser,
     @Body() createConfigDto: CreateConfigDto,
   ) {
     return this.configurationService.create(req.user.id, createConfigDto);
@@ -73,7 +80,7 @@ export class ConfigurationController {
   @Patch(':id')
   @UseGuards(AuthGuard)
   async updateConfig(
-    @Req() req: any,
+    @Req() req: RequestWithUser,
     @Param('id') configId: string,
     @Body() updateConfigDto: UpdateConfigDto,
   ) {

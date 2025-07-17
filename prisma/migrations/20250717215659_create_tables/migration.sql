@@ -15,11 +15,11 @@ CREATE TABLE "user_config" (
     "id" UUID NOT NULL DEFAULT gen_random_uuid(),
     "name" TEXT NOT NULL,
     "user_id_fk" UUID NOT NULL,
-    "motherboard_id" UUID NOT NULL,
-    "cpu_id" UUID NOT NULL,
-    "gpu_id" UUID NOT NULL,
-    "cpu_fan_id" UUID NOT NULL,
-    "psu_id" UUID NOT NULL,
+    "motherboard_mpn" TEXT NOT NULL,
+    "cpu_mpn" TEXT NOT NULL,
+    "gpu_mpn" TEXT NOT NULL,
+    "cpu_fan_mpn" TEXT NOT NULL,
+    "psu_mpn" TEXT NOT NULL,
     "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updated_at" TIMESTAMP(3) NOT NULL,
 
@@ -30,7 +30,7 @@ CREATE TABLE "user_config" (
 CREATE TABLE "config_memory" (
     "id" UUID NOT NULL DEFAULT gen_random_uuid(),
     "user_config_id_fk" UUID NOT NULL,
-    "memory_id" TEXT NOT NULL,
+    "memory_mpn" TEXT NOT NULL,
     "quantity" INTEGER NOT NULL,
 
     CONSTRAINT "config_memory_pkey" PRIMARY KEY ("id")
@@ -40,7 +40,7 @@ CREATE TABLE "config_memory" (
 CREATE TABLE "config_storage" (
     "id" UUID NOT NULL DEFAULT gen_random_uuid(),
     "user_config_id_fk" UUID NOT NULL,
-    "storage_id" TEXT NOT NULL,
+    "storage_mpn" TEXT NOT NULL,
     "quantity" INTEGER NOT NULL,
 
     CONSTRAINT "config_storage_pkey" PRIMARY KEY ("id")

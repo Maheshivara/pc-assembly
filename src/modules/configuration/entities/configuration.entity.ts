@@ -4,10 +4,10 @@ export class UserConfig {
 }
 export class UserConfigDetails {
   id: string;
-  motherboardId: string;
-  cpuId: string;
-  gpuId: string;
-  psuId: string;
+  motherboardMpn: string;
+  cpuMpn: string;
+  gpuMpn: string;
+  psuMpn: string;
   memories: ConfigMemory[];
   storages: ConfigStorage[];
   history: ConfigHistory[];
@@ -15,13 +15,13 @@ export class UserConfigDetails {
 
 class ConfigMemory {
   id: string;
-  memoryId: string;
+  memoryMpn: string;
   quantity: number;
 }
 
 class ConfigStorage {
   id: string;
-  storageId: string;
+  storageMpn: string;
   quantity: number;
 }
 

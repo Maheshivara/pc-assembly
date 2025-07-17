@@ -28,17 +28,17 @@ model User {
 }
 
 model UserConfig {
-  id            String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  name          String
-  userId        String   @unique @map("user_id_fk") @db.Uuid
-  user          User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-  motherboardId String   @map("motherboard_id") @db.Uuid
-  cpuId         String   @map("cpu_id") @db.Uuid
-  gpuId         String   @map("gpu_id") @db.Uuid
-  cpuFanId      String   @map("cpu_fan_id") @db.Uuid
-  psuId         String   @map("psu_id") @db.Uuid
-  createdAt     DateTime @default(now()) @map("created_at")
-  updatedAt     DateTime @updatedAt @map("updated_at")
+  id             String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  name           String
+  userId         String   @unique @map("user_id_fk") @db.Uuid
+  user           User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  motherboardMpn String   @map("motherboard_mpn")
+  cpuMpn         String   @map("cpu_mpn")
+  gpuMpn         String   @map("gpu_mpn")
+  cpuFanMpn      String   @map("cpu_fan_mpn")
+  psuMpn         String   @map("psu_mpn")
+  createdAt      DateTime @default(now()) @map("created_at")
+  updatedAt      DateTime @updatedAt @map("updated_at")
 
   memories ConfigMemory[]
   storages ConfigStorage[]
@@ -51,7 +51,7 @@ model ConfigMemory {
   id           String     @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   userConfigId String     @map("user_config_id_fk") @db.Uuid
   userConfig   UserConfig @relation(fields: [userConfigId], references: [id], onDelete: Cascade)
-  memoryId     String     @map("memory_id")
+  memoryMpn    String     @map("memory_mpn")
   quantity     Int
 
   @@map("config_memory")
@@ -61,7 +61,7 @@ model ConfigStorage {
   id           String     @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   userConfigId String     @map("user_config_id_fk") @db.Uuid
   userConfig   UserConfig @relation(fields: [userConfigId], references: [id], onDelete: Cascade)
-  storageId    String     @map("storage_id")
+  storageMpn   String     @map("storage_mpn")
   quantity     Int
 
   @@map("config_storage")

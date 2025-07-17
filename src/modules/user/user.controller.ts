@@ -12,6 +12,7 @@ import {
 import { UserService } from './user.service';
 import { AuthGuard } from '../auth/auth.guard';
 import { UpdateUserDto } from './dto/update-user.dto';
+import { RequestWithUser } from '../common/entities/request.entity';
 
 @Controller('user')
 export class UserController {
@@ -20,7 +21,7 @@ export class UserController {
   @HttpCode(HttpStatus.OK)
   @Get('')
   @UseGuards(AuthGuard)
-  async getInfo(@Req() req: any) {
+  getInfo(@Req() req: RequestWithUser) {
     const info = {
       email: req.user.email,
       username: req.user.username,
@@ -31,14 +32,14 @@ export class UserController {
   @HttpCode(HttpStatus.OK)
   @Patch('')
   @UseGuards(AuthGuard)
-  async updateUser(@Req() req: any, @Body() body: UpdateUserDto) {
+  async updateUser(@Req() req: RequestWithUser, @Body() body: UpdateUserDto) {
     return this.userService.updateOne(req.user.id, body);
   }
 
   @HttpCode(HttpStatus.NO_CONTENT)
   @Delete('')
   @UseGuards(AuthGuard)
-  async deleteUser(@Req() req: any) {
+  async deleteUser(@Req() req: RequestWithUser) {
     return this.userService.deleteOne(req.user.id);
   }
 }
