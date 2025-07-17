@@ -12,7 +12,7 @@ import {
 import { UserService } from './user.service';
 import { AuthGuard } from '../auth/auth.guard';
 import { UpdateUserDto } from './dto/update-user.dto';
-import { RequestWithUser } from '../common/entities/request.entity';
+import { RequestWithUser } from '../common/interfaces/request.interface';
 
 @Controller('user')
 export class UserController {

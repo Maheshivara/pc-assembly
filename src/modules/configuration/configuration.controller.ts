@@ -20,7 +20,7 @@ import { PaginationOptions } from '../common/entities/pagination.entity';
 import { isUUID } from 'class-validator';
 import { CreateConfigDto } from './dto/create-config.dto';
 import { UpdateConfigDto } from './dto/update-config.dto';
-import { RequestWithUser } from '../common/entities/request.entity';
+import { RequestWithUser } from '../common/interfaces/request.interface';
 
 @Controller('configuration')
 export class ConfigurationController {
