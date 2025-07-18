@@ -1,3 +1,4 @@
+import { Transform } from 'class-transformer';
 import {
   IsPositive,
   IsString,
@@ -39,6 +40,7 @@ class CreateConfigMemoryDto {
   memoryMpn: string;
 
   @IsPositive({ message: 'Quantity must be a positive number' })
+  @Transform(({ value }) => Number(value))
   quantity: number;
 }
 
@@ -47,5 +49,6 @@ class CreateConfigStorageDto {
   storageMpn: string;
 
   @IsPositive({ message: 'Quantity must be a positive number' })
+  @Transform(({ value }) => Number(value))
   quantity: number;
 }

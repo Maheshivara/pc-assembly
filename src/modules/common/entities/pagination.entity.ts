@@ -1,3 +1,4 @@
+import { Transform } from 'class-transformer';
 import { IsInt, Min } from 'class-validator';
 
 export class PagedResult<T> {
@@ -17,10 +18,12 @@ export class PagedResult<T> {
 export class PaginationOptions {
   @IsInt({ message: 'Page must be an integer.' })
   @Min(1, { message: 'Page must be at least 1.' })
+  @Transform(({ value }) => Number(value))
   page: number;
 
   @IsInt({ message: 'Items per page must be an integer.' })
   @Min(10, { message: 'Items per page must be at least 10.' })
+  @Transform(({ value }) => Number(value))
   perPage: number;
 
   constructor(page: number = 1, perPage: number = 10) {
