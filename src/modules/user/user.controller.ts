@@ -23,6 +23,7 @@ export class UserController {
   @UseGuards(AuthGuard)
   getInfo(@Req() req: RequestWithUser) {
     const info = {
+      id: req.user.id,
       email: req.user.email,
       username: req.user.username,
     };
