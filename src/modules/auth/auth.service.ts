@@ -44,9 +44,12 @@ export class AuthService {
 
   async refreshToken(token: string): Promise<TokensEntity> {
     try {
-      const payload = await this.jwtService.verifyAsync<PayloadEntity>(token, {
-        secret: jwtConstants.refreshTokenSecret,
-      });
+      const payload = await this.jwtService.verifyAsync<{ email: string }>(
+        token,
+        {
+          secret: jwtConstants.refreshTokenSecret,
+        },
+      );
       const user = await this.userService.findOne(payload.email);
       if (!user) {
         throw new UnauthorizedException();
@@ -61,10 +64,13 @@ export class AuthService {
   private getTokens(payload: PayloadEntity): TokensEntity {
     const plainPayload = { ...payload };
     const accessToken = this.jwtService.sign(plainPayload);
-    const refreshToken = this.jwtService.sign(plainPayload, {
-      secret: jwtConstants.refreshTokenSecret,
-      expiresIn: jwtConstants.refreshTokenExpiration,
-    });
+    const refreshToken = this.jwtService.sign(
+      { email: plainPayload.email },
+      {
+        secret: jwtConstants.refreshTokenSecret,
+        expiresIn: jwtConstants.refreshTokenExpiration,
+      },
+    );
     return new TokensEntity(accessToken, refreshToken);
   }
 }
