@@ -4,7 +4,9 @@ export class UserConfig {
 }
 export class UserConfigDetails {
   id: string;
+  name: string;
   motherboardMpn: string;
+  cpuFanMpn: string;
   cpuMpn: string;
   gpuMpn: string;
   psuMpn: string;
