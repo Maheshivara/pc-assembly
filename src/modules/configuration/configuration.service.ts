@@ -39,7 +39,6 @@ export class ConfigurationService {
           name: true,
         },
       });
-
       return new PagedResult(items, pagination.page, pagination.perPage, total);
     } catch (error) {
       console.error('Error fetching configuration:', error);
@@ -58,6 +57,7 @@ export class ConfigurationService {
           gpuMpn: true,
           psuMpn: true,
           motherboardMpn: true,
+          cpuFanMpn: true,
           memories: {
             select: {
               id: true,
@@ -85,7 +85,6 @@ export class ConfigurationService {
       if (!config) {
         throw new NotFoundException('Configuration not found');
       }
-
       return config;
     } catch (error) {
       console.error('Error fetching configuration by ID:', error);

@@ -1,8 +1,8 @@
 import { Transform } from 'class-transformer';
 import {
+  ArrayNotEmpty,
   IsPositive,
   IsString,
-  IsUUID,
   MaxLength,
   MinLength,
 } from 'class-validator';
@@ -28,10 +28,10 @@ export class CreateConfigDto {
   @IsString({ message: 'PSU MPN must be a string' })
   psuMpn: string;
 
-  @MinLength(1, { message: 'At least one memory is required' })
+  @ArrayNotEmpty({ message: 'At least one memory is required' })
   memories: CreateConfigMemoryDto[];
 
-  @MinLength(1, { message: 'At least one storage is required' })
+  @ArrayNotEmpty({ message: 'At least one storage is required' })
   storages: CreateConfigStorageDto[];
 }
 

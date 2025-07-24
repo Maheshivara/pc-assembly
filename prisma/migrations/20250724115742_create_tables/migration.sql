@@ -59,9 +59,6 @@ CREATE TABLE "config_history" (
 -- CreateIndex
 CREATE UNIQUE INDEX "user_email_key" ON "user"("email");
 
--- CreateIndex
-CREATE UNIQUE INDEX "user_config_user_id_fk_key" ON "user_config"("user_id_fk");
-
 -- AddForeignKey
 ALTER TABLE "user_config" ADD CONSTRAINT "user_config_user_id_fk_fkey" FOREIGN KEY ("user_id_fk") REFERENCES "user"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 

@@ -30,7 +30,7 @@ model User {
 model UserConfig {
   id             String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   name           String
-  userId         String   @unique @map("user_id_fk") @db.Uuid
+  userId         String   @map("user_id_fk") @db.Uuid
   user           User     @relation(fields: [userId], references: [id], onDelete: Cascade)
   motherboardMpn String   @map("motherboard_mpn")
   cpuMpn         String   @map("cpu_mpn")
